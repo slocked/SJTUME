@@ -1,0 +1,19 @@
+*** Starting uWSGI 2.0.12 (64bit) on [Tue Apr 26 23:32:40 2016] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 13 April 2016 14:37:50
+os: Linux-3.10.0-123.9.3.el7.x86_64 #1 SMP Thu Nov 6 15:06:03 UTC 2014
+nodename: iZ288imwr0rZ
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/www.sjtume.cn/venv
+detected binary path: /data/wwwroot/www.sjtume.cn/venv/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 65535
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+The -s/--socket option is missing and stdin is not a socket.
