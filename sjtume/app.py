@@ -134,6 +134,22 @@ def wechat_auth():
     if msgtype == "event":
         msgcontent = xml_rec.find('Event').text
         eventk = xml_rec.find('EventKey').text
+
+        if msgcontent == "subscribe":
+            msgcontent = "【工导测试公众号】 欢迎使用智能柜系统，您可以通过底部菜单栏按钮存取物品，课程网站菜单内有我们组的自建网站及项目源码，智能家居接口正在开发中，感谢您的关注。"
+            response = make_response(xml_rep_text % (from_usr,to_usr,str(int(time.time())),msgcontent))
+            response.content_type='application/xml'
+            return response
+
+        if msgcontent == "LOCATION":
+            latitude = xml_rec.find('Latitude').text
+            longtitude = xml_rec.find('Longitude').text
+            precision = xml_rec.find('Precision').text
+            msgcontent = "Latitude: %s ; Longtitude: %s ; Precision: %s " % (latitude,longtitude,precision)
+            response = make_response(xml_rep_text % (from_usr,to_usr,str(int(time.time())),msgcontent))
+            response.content_type='application/xml'
+            return response
+
         if msgcontent == "CLICK" and eventk == "deposit":
             find = DOOR.query.filter(DOOR.username != "NULL").all()
             l = len(find)
