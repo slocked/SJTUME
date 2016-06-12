@@ -135,6 +135,7 @@ def wechat_auth():
     s = [timestamp, nonce, token]  
     s.sort()  
     s = ''.join(s)  
+    seed=random.randint(0,99)
     if ( hashlib.sha1(s).hexdigest() == signature ):    
        return make_response(echostr)  
 
@@ -204,7 +205,7 @@ def wechat_auth():
                 response.content_type='application/xml'
                 return response
             else:
-                msgcontent = "回复 1 确认打开您已存的柜子"
+                msgcontent = "回复",seed, "确认打开您已存的柜子"
                 response = make_response(xml_rep_text % (from_usr,to_usr,str(int(time.time())),msgcontent))
                 response.content_type='application/xml'
                 return response
@@ -212,7 +213,7 @@ def wechat_auth():
     if msgtype == "text":
         msgcontent = xml_rec.find('Content').text
 
-        if msgcontent == "1":
+        if msgcontent == seed:
             find = DOOR.query.filter_by(username=from_usr).first()
             num = find.id
             msgcontent = '确认成功，正在为您打开 %s 号柜' % num
