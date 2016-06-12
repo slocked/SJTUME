@@ -105,6 +105,20 @@ def door():
 
 
 
+@app.route('/doorpy')
+def doorpy():
+	door1 = DOOR.query.filter_by(id=1).first()
+	door2 = DOOR.query.filter_by(id=2).first()
+	if door1.username == "NULL":
+		door1_state = 'N'
+	else:
+		door1_state = 'Y'
+	if door2.username == "NULL":
+		door2_state = 'N'
+	else:
+		door2_state = 'Y'
+	return render_template('doorpy.html',d1=door1_state,d2=door2_state)
+
 
 
 
